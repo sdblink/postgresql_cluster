@@ -1,3 +1,9 @@
+docker-compose up --build -d
+#docker exec -it pgnode01 make bootstrap-dev
+#docker exec -it pgnode01 make molecule-test
+docker exec -it pgnode01 bash
+
+
 # PostgreSQL High-Availability Cluster :elephant: :sparkling_heart:
 
 [<img src="https://github.com/vitabaks/postgresql_cluster/workflows/Ansible-lint/badge.svg?branch=master">](https://github.com/vitabaks/postgresql_cluster/actions?query=workflow%3AAnsible-lint)

@@ -1,0 +1,57 @@
+version: '3.8'
+services:
+  pgnode01:
+    build: .
+    container_name: pgnode01
+    hostname: pgnode01
+    networks:
+      test_docker_network:
+        ipv4_address: 10.172.0.20
+    ports:
+      - "3222:22"  # Change to a different port for SSH
+    privileged: true
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:rw
+      - /var/run/docker.sock:/var/run/docker.sock  # Add this line to share Docker socket
+    environment:
+      DOCKER_HOST: unix:///var/run/docker.sock  # Add this line to set Docker host environment variable
+
+  pgnode02:
+    build: .
+    container_name: pgnode02
+    hostname: pgnode02
+    networks:
+      test_docker_network:
+        ipv4_address: 10.172.0.21
+    ports:
+      - "4222:22"  # Change to a different port for SSH
+    privileged: true
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:rw
+      - /var/run/docker.sock:/var/run/docker.sock  # Add this line to share Docker socket
+    environment:
+      DOCKER_HOST: unix:///var/run/docker.sock  # Add this line to set Docker host environment variable
+
+  pgnode03:
+    build: .
+    container_name: pgnode03
+    hostname: pgnode03
+    networks:
+      test_docker_network:
+        ipv4_address: 10.172.0.22
+    ports:
+      - "5222:22"  # Change to a different port for SSH
+    privileged: true
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:rw
+      - /var/run/docker.sock:/var/run/docker.sock  # Add this line to share Docker socket
+    environment:
+      DOCKER_HOST: unix:///var/run/docker.sock  # Add this line to set Docker host environment variable
+
+networks:
+  test_docker_network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 10.172.0.0/24
+
