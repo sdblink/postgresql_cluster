@@ -25,9 +25,6 @@ COPY . /opt/project/
 RUN pip3.10 install -r /opt/project/requirements.txt && \
     if [ -f /opt/project/requirements-dev.txt ]; then pip3.10 install -r /opt/project/requirements-dev.txt; fi
 
-# Ajuster les permissions du répertoire du projet
-RUN chmod -R 755 /opt/project
-
 WORKDIR /opt/project
 
 # Activer systemd dans le conteneur

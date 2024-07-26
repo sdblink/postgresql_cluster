@@ -8,13 +8,13 @@ services:
       test_docker_network:
         ipv4_address: 10.172.0.20
     ports:
-      - "3222:22"  # Port SSH exposé pour pgnode01
+      - "3222:22"  # Change to a different port for SSH
     privileged: true
-    environment:
-      - container=docker
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:rw
-      - .:/opt/project  # Monter le répertoire du projet
+      - /var/run/docker.sock:/var/run/docker.sock  # Add this line to share Docker socket
+    environment:
+      DOCKER_HOST: unix:///var/run/docker.sock  # Add this line to set Docker host environment variable
 
   pgnode02:
     build: .
@@ -24,13 +24,13 @@ services:
       test_docker_network:
         ipv4_address: 10.172.0.21
     ports:
-      - "4222:22"  # Port SSH exposé pour pgnode02
+      - "4222:22"  # Change to a different port for SSH
     privileged: true
-    environment:
-      - container=docker
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:rw
-      - .:/opt/project  # Monter le répertoire du projet
+      - /var/run/docker.sock:/var/run/docker.sock  # Add this line to share Docker socket
+    environment:
+      DOCKER_HOST: unix:///var/run/docker.sock  # Add this line to set Docker host environment variable
 
   pgnode03:
     build: .
@@ -40,13 +40,13 @@ services:
       test_docker_network:
         ipv4_address: 10.172.0.22
     ports:
-      - "5222:22"  # Port SSH exposé pour pgnode03
+      - "5222:22"  # Change to a different port for SSH
     privileged: true
-    environment:
-      - container=docker
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:rw
-      - .:/opt/project  # Monter le répertoire du projet
+      - /var/run/docker.sock:/var/run/docker.sock  # Add this line to share Docker socket
+    environment:
+      DOCKER_HOST: unix:///var/run/docker.sock  # Add this line to set Docker host environment variable
 
 networks:
   test_docker_network:
