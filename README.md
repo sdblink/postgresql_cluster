@@ -1,6 +1,9 @@
+### TESTING
 docker-compose up --build -d
+
 #docker exec -it pgnode01 make bootstrap-dev
 #docker exec -it pgnode01 make molecule-test
+
 docker exec -it pgnode01 bash
 
 
